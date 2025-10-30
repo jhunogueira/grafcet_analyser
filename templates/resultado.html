@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Resultado da Análise - Analisador SFC/GRAFCET{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="result-header">
+        <h1>📊 Resultado da Análise do GRAFCET</h1>
+        <p class="result-filename">Arquivo analisado: <strong>{{ filename }}</strong></p>
+    </div>
+
+    {% if resultado.success %}
+        {% set total_success = resultado.resultados | selectattr('status', 'equalto', 'success') | list | length %}
+        {% set total_warning = resultado.resultados | selectattr('status', 'equalto', 'warning') | list | length %}
+        {% set total_error = resultado.resultados | selectattr('status', 'equalto', 'error') | list | length %}
+
+        <div class="summary-card" style="margin-bottom: 2.5rem;">
+            {% if total_error == 0 and total_warning == 0 %}
+                <h3>🎉 Parabéns! Seu GRAFCET está estruturado corretamente.</h3>
+                <p>Todas as verificações foram aprovadas. O modelo está pronto para conversão em ladder para programação do CLP.</p>
+            {% elif total_error == 0 and total_warning > 0 %}
+                <h3>⚠️ Seu GRAFCET está quase perfeito!</h3>
+                <p>Foram encontrados alguns pontos de atenção. Corrija os avisos para melhorar a clareza e segurança do seu modelo.</p>
+            {% else %}
+                <h3>🚫 Seu GRAFCET precisa de correções.</h3>
+                <p>Foram detectados erros estruturais. Revise as mensagens abaixo e ajuste seu projeto no Codesys antes de reenviar.</p>
+            {% endif %}
+        </div>
+
+        <div class="results-grid">
+            {% for item in resultado.resultados %}
+                <div class="result-card result-{{ item.status }}">
+                    <div class="result-icon">
+                        {% if item.status == 'success' %}
+                            ✅
+                        {% elif item.status == 'warning' %}
+                            ⚠️
+                        {% else %}
+                            ❌
+                        {% endif %}
+                    </div>
+
+                    <div class="result-content">
+                        <div class="result-status">
+                            {% if item.status == 'success' %}
+                                Verificação Aprovada
+                            {% elif item.status == 'warning' %}
+                                Atenção Necessária
+                            {% else %}
+                                Erro Encontrado
+                            {% endif %}
+                        </div>
+                        <div class="result-message">{{ item.message }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="summary-card">
+            <h3>📋 Resumo da Análise</h3>
+            <div class="summary-stats">
+                <div class="stat">
+                    <span class="stat-value">{{ total_success }}</span>
+                    <span class="stat-label">Aprovadas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">{{ total_warning }}</span>
+                    <span class="stat-label">Avisos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">{{ total_error }}</span>
+                    <span class="stat-label">Erros</span>
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="error-card">
+            <div class="error-icon">❌</div>
+            <h2>Erro ao Processar Arquivo</h2>
+            <p>{{ resultado.error }}</p>
+            <p style="margin-top: 1rem; color: var(--text-secondary);">Verifique se o arquivo está em formato PLCopenXML exportado corretamente do Codesys.</p>
+        </div>
+    {% endif %}
+
+    <div class="actions" style="margin-top: 2rem;">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+            <span>⬅️</span>
+            Enviar outro arquivo
+        </a>
+    </div>
+</div>
+{% endblock %}
