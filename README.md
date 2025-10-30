@@ -22,62 +22,17 @@ Aplicação web para análise e validação de arquivos GRAFCET em formato PLCop
 1. Clone ou baixe este repositório
 
 2. Instale as dependências:
-\`\`\`bash
-pip install flask
-\`\`\`
+
+`pip install flask`
+
 
 3. Execute a aplicação:
-\`\`\`bash
-python app.py
-\`\`\`
+`bash python app.py`
+
 
 4. Acesse no navegador:
-\`\`\`
+
 http://localhost:5000
-\`\`\`
-
-## 📁 Estrutura do Projeto
-
-\`\`\`
-grafcet-analyzer/
-├── app.py                 # Aplicação Flask principal
-├── modules/
-│   └── analyser.py       # Lógica de análise do GRAFCET
-├── templates/
-│   ├── base.html         # Template base
-│   ├── index.html        # Página inicial
-│   └── resultado.html    # Página de resultados
-├── static/
-│   └── css/
-│       └── style.css     # Estilos da aplicação
-├── uploads/              # Pasta para arquivos enviados
-├── .gitignore           # Arquivos ignorados pelo Git
-└── README.md            # Este arquivo
-\`\`\`
-
-## 🎨 Melhorias Implementadas
-
-### Organização
-- ✅ Estrutura de pastas profissional
-- ✅ Separação de lógica de negócio (módulo analyser)
-- ✅ Templates com herança (base.html)
-- ✅ Arquivos estáticos organizados
-
-### Visual
-- ✅ Design moderno e responsivo
-- ✅ Gradientes e sombras sutis
-- ✅ Feedback visual claro (sucesso, aviso, erro)
-- ✅ Animações suaves
-- ✅ Ícones emoji para melhor UX
-- ✅ Cards com hover effects
-
-### Funcionalidades
-- ✅ Flash messages para feedback
-- ✅ Validação de arquivo melhorada
-- ✅ Tratamento de erros robusto
-- ✅ Limite de tamanho de arquivo
-- ✅ Preview do nome do arquivo selecionado
-- ✅ Estatísticas de análise
 
 ## 📝 Uso
 
