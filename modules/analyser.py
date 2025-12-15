@@ -4,6 +4,7 @@
 # Alunos: Jhulia Andrade de Souza Nogueira e Henrique Marques Dias Chaves
 # Orientador: Prof. Dr. Sidney Carlos Gasoto
 # Banca: Prof. Dr. Luiz Carlos de Abreu Rodrigues e Prof. Dr. Márcio Alves Sodré de Souza
+# Palavras-chave: manufatura integrada; programação de CLPs; interface de usuário; ferramenta educacional.
 # Data da defesa: 27/11/2025
 
 import xml.etree.ElementTree as ET
