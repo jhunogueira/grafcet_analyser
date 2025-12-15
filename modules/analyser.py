@@ -1,10 +1,17 @@
+# FERRAMENTA EDUCACIONAL ORIENTATIVA PARA ALUNOS DE GRADUAÇÃO
+# NA DISCIPLINA DE MANUFATURA INTEGRADA DA UTFPR
+#     Copyright (C) 2025
+# Alunos: Jhulia Andrade de Souza Nogueira e Henrique Marques Dias Chaves
+# Orientador: Prof. Dr. Sidney Carlos Gasoto
+# Banca: Prof. Dr. Luiz Carlos de Abreu Rodrigues e Prof. Dr. Márcio Alves Sodré de Souza
+# Data da defesa: 27/11/2025
+
 import xml.etree.ElementTree as ET
 
 def extrair_namespace(root):
     if '}' in root.tag:
         return root.tag.split('}')[0][1:]
     return ''
-
 
 def verificar_etapa_inicial(root, ns):
     path = f".//{{{ns}}}step[@initialStep='true']"
